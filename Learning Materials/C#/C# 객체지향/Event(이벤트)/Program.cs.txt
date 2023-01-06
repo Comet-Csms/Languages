@@ -1,0 +1,19 @@
+class Program
+{
+    static void OnInputTest()
+    {
+        Console.WriteLine("Input Received!");
+    }
+
+    static void Main(string[] args)
+    {
+        InputManager inputManager = new InputManager();
+        inputManager.InputKey += OnInputTest; // 구독자 모집, 구독 신청 // -= 구독 취소
+
+        while (true)
+        {
+            inputManager.Update();
+        }
+
+        // inputManager.InputKey(); // 이렇게 호출 불가
+}

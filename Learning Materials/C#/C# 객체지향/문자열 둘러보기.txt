@@ -1,0 +1,22 @@
+class Program
+{
+    static void Main(string[] args)
+    {
+        string name = "Harry Potter";
+
+        // 1. 찾기
+        bool found = name.Contains("Harry"); // true
+        int index = name.IndexOf('P'); // 6
+        int index2 = name.IndexOf('z'); // -1
+
+        // 2. 변형
+        name = name + " Junior";
+        string lowerCaseName = name.ToLower(); // harry potter junior
+        string upperCaseName = name.ToUpper(); // HARRY POTTER JUNIOR
+        string newName = name.Replace('r', 'l'); // Hally Pottel Juniol
+
+        // 3. 분할
+        string[] names = name.Split(new char[] { ' ' }); // names[0] == "Harry", names[1] == "Potter", names[2] == "Junior"
+        string substringName = name.Substring(4); // y Potter Junior
+    }
+}

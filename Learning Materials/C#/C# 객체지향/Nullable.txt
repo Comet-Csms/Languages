@@ -1,0 +1,63 @@
+class Program
+{
+    class Monster
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        Monster monster = null; // Monster은 참조타입이기 때문에 null값이 가능
+
+        //int number = null; // int는 참조타입이 아니기 때문에 null값이 안됨
+
+        // Nullable -> Null + able
+        int? number = null;
+        number = 3;
+
+        //int a = (int)number; // 이렇게 캐스팅을 명시적으로 해줘서 값을 넣을 수 있지만
+        int a = number.Value; // 이렇게 값을 넣어주면 된다.
+        Console.WriteLine(a);
+
+        int? number2 = null;
+
+        // null값인 number2를 출력하려고하면 프로그램이 터진다.
+        //Console.WriteLine(number2);
+
+        // 그래서 아래와 같이 프로그램이 터지는 경우를 방지할 수 있다.
+        // 방법 1.
+        if (number2 != null)
+        {
+            Console.WriteLine(number2);
+        }
+        // 방법 2.
+        if (number.HasValue)
+        {
+            Console.WriteLine(number2);
+        }
+        // 방법 3.
+        int b = number2 ?? 0;// number2가 null값이 아니면 그 값을 b에 넣어주고, null값이면 b에 초기값으로 입력한 0(0은 다른 값 가능)을 넣어준다.
+        Console.WriteLine(b);
+
+        // 방법 4. (방법 3과 비슷)
+        int c = (number2 != null) ? number.Value : 0;
+
+
+        // 추가 내용
+        int? monsterId;
+        if (monster == null)
+        {
+            monsterId = null;
+        }
+        else // == else if (monster != null)
+        {
+            monsterId = monster.Id;
+        }
+        // 이를 아래와 같이 줄일수 있다.
+        int? monsterId2 = monster?.Id;
+    }
+}

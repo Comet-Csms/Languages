@@ -1,0 +1,58 @@
+class Program
+{
+    // 업체 사장 - 사장님의 비서
+    // 우리의 연락처/용건을 넘기고 -> 거꾸로 연락을 달라고 요청
+
+    delegate int OnClicked();
+    // delegate - 형식, 함수 자체를 인자로 넘겨주는 그런 형식
+    // 반환 : int, 입력 : void
+    // OnClicked가 이 delegate 형식의 이름
+
+    static void ButtonPressed(OnClicked clickedFunction /*함수 자체를 매개변수로 넘겨받음*/)
+    {
+        // 함수를 호출
+        clickedFunction();
+    }
+
+    static void aaa(OnClicked cc)
+    {
+        cc();
+    }
+
+    // 위에서 선언한 delegate의 형태에 맞춘 함수를 만듦 (ButtonPressed에 인자로 넘겨줄 함수)
+    static int TestDelegate()
+    {
+        Console.WriteLine("Hello Delegate");
+        return 0;
+    }
+
+    static int TestDelegate2()
+    {
+        Console.WriteLine("Hello Delegate2");
+        return 0;
+    }
+
+    static void Main(string[] args)
+    {
+        // 호출방법 1.
+        ButtonPressed(TestDelegate);
+
+        // 호출방법 2. (추천)
+        OnClicked clicked = new OnClicked(TestDelegate);
+        ButtonPressed(clicked);
+
+        /*
+        // 물론 ButtonPressed에 인자를 넘기지 않고 아래와 같이 호출해도 TestDelegate 함수가 호출되기는 한다.
+        // ButtonPressed 안에서만 실행되었어야할 함수라면, 문제 발생 -> Event 강의 참고
+        clicked();
+        */
+
+        // 추가 호출방법 2.에는 이런 기능도 있다.
+        clicked += TestDelegate2; // clicked에 더해주면
+        ButtonPressed(clicked); // ButtonPressed를 두번 호출하지 않고도, 즉 ButtonPressed를 한번만 호출하고도 두 인자를 한번에 넘기는 효과를 낸다.
+                                // ButtonPressed(TestDelegate, TestDelegate2); 이렇게는 애초에 불가능
+                                // clicked에 더해준 것은 아래와 다르게 동작함 // 디버깅에서 확인 가능
+        /*ButtonPressed(TestDelegate);
+        ButtonPressed(TestDelegate2);*/
+    }
+}

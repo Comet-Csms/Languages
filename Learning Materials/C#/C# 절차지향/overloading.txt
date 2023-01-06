@@ -1,0 +1,31 @@
+class Program
+{
+    static int Add(int a, int b)
+    {
+        return a + b;
+    }
+
+    static int Add(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+
+    static double Add(double a, double b)
+    {
+        return a + b;
+    }
+
+    static void Main(string[] args)
+    {
+        int result;
+        result = Program.Add(3, 5);
+        Console.WriteLine(result); // 8
+
+        result = Program.Add(3, 5, 2);
+        Console.WriteLine(result); // 10
+
+        double result2;
+        result2 = Program.Add(3.14, 2.7);
+        Console.WriteLine(result2); // 5.84
+    }
+}

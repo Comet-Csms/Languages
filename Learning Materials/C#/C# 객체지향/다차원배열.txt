@@ -1,0 +1,25 @@
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 2차원 배열
+        int[,] arr = new int[2, 3];
+        // == int[,] arr = new int[2, 3] { { 1, 2, 3 }, { 1, 2, 3 } };
+        // == int[,] arr = new int[,] { { 1, 2, 3 }, { 1, 2, 3 } };
+        // == int[,] arr = { { 1, 2, 3 }, { 1, 2, 3 } };
+
+        // 접근방법
+        arr[0, 0] = 1;
+        arr[1, 0] = 1;
+
+        // Ragged 배열 : 각 행마다 열의 개수가 다른 배열
+        int[][] arr2 = new int[3][];
+
+        arr2[0] = new int[3]; // 1행은 3개의 열
+        arr2[1] = new int[6]; // 2행은 6개의 열
+        arr2[2] = new int[2]; // 3행은 2개의 열
+
+        // 접근방법(같음)
+        arr2[0][0] = 1;
+    }
+}

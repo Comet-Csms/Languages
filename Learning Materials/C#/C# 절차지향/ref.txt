@@ -1,0 +1,26 @@
+class Program
+{
+    static void AddOne(ref int num)
+    {
+        num = num + 1;
+    }
+
+    static int AddOne2(int num)
+    {
+        return num + 1; ;
+    }
+
+    static void Main(string[] args)
+    {
+        int a = 3;
+
+        Program.AddOne(ref a);
+        Console.WriteLine(a); // 4
+
+        a = 3; //a를 3으로 다시 초기화
+
+        int b = Program.AddOne2(a);
+        a = b;
+        Console.WriteLine(a); // 4
+    }
+}

@@ -1,0 +1,16 @@
+class Program
+{
+    static void AddOne(ref int num)
+    {
+        num++;
+    }
+
+    static void Main(string[] args)
+    {
+        int a = 3;
+
+        Program.AddOne(ref a);
+
+        Console.WriteLine(a); // 4
+    }
+}

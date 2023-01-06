@@ -1,0 +1,23 @@
+//Observer Design Pattern   
+class InputManager
+{
+    public delegate void OnInputKey();
+    public event OnInputKey InputKey; // 공급자, 유튜브 채널 하나라고 생각하면 됨
+
+    public void Update()
+    {
+        if (Console.KeyAvailable == false) // 아무 키 입력이 없으면
+        {
+            return;
+        }
+
+        ConsoleKeyInfo info = Console.ReadKey();
+        if (info.Key == ConsoleKey.A) // A키를 입력했으면
+        {
+            // 여기에 함수를 작성해도 되지만 좋은 방식은 아님(의존성 증가 등의 이유) -> delegate방식 이용
+
+            // 구독한 모두에게 알려준다.
+            InputKey();
+        }
+    }
+}

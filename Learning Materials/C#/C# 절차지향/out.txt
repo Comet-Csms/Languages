@@ -1,0 +1,21 @@
+class Program
+{
+    static void Divide(int a, int b, out int result1, out int result2)
+    {
+        result1 = a / b;
+        result2 = a % b;
+    }
+
+    static void Main(string[] args)
+    {
+        int a = 10;
+        int b = 3;
+
+        int result1, result2;
+
+        Program.Divide(a, b, out result1, out result2);
+
+        Console.WriteLine(result1); // 3
+        Console.WriteLine(result2); // 1
+    }
+}
