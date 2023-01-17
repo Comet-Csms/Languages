@@ -1,0 +1,70 @@
+using System.Reflection; // FieldInfo 사용하기 위함
+using System.Collections.Generic; // IEnumerable<Attribute>로 줄이기 위함
+
+class Program
+    {
+        class Important : System.Attribute
+        {
+            string message;
+
+            public Important(string message)
+            {
+                this.message = message;
+            }
+        }
+        
+        class Monster
+        {
+            // hp, Very Important // 주석 : 컴파일러가 컴파일도 안함
+            // Attribute : 컴퓨터가 Runtime에 체크할 수 있는 주석 // 생성자대로 인수 삽입 가능
+            [Important("Very Important")]
+            public int hp;
+
+            protected int attack;
+            private float speed;
+
+            void Attack()
+            {
+
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            // Reflection : X-Ray와 같음, 해당 객체의 모든 정보들을 다 알 수 있음
+
+            Monster monster = new Monster();
+
+            Type type = monster.GetType(); // 해당 객체의 타입을 알 수 있음
+
+            // 어떤 유형의 정보를 보고 싶은지 입력해야함
+            /*System.Reflection.FieldInfo[] fields = type.GetFields(System.Reflection.BindingFlags.Public // public을 알고싶음
+                | System.Reflection.BindingFlags.NonPublic // public이 아닌 것을 알고싶음
+                | System.Reflection.BindingFlags.Static // static을 알고싶음
+                | System.Reflection.BindingFlags.Instance); // instance를 알고싶음*/
+            // using System.Reflection;을 작성하면 아래와 같이 작성 가능 // Tip - var타입을 이용해도 됨
+            FieldInfo[] fields = type.GetFields(BindingFlags.Public // public을 알고싶음
+                | BindingFlags.NonPublic // public이 아닌 것을 알고싶음
+                | BindingFlags.Static // static을 알고싶음
+                | BindingFlags.Instance); // instance를 알고싶음
+
+            foreach (FieldInfo field in fields)
+            {
+                string access = "protected";
+                if (field.IsPublic)
+                {
+                    access = "public";
+                }
+                else if (field.IsPrivate)
+                {
+                    access = "private";
+                }
+
+                //System.Collections.Generic.IEnumerable<Attribute> attributes = field.GetCustomAttributes();
+                // using System.Collections.Generic;을 작성하면 아래와 같이 작성 가능 // Tip - var타입을 이용해도 됨
+                IEnumerable<Attribute> attributes = field.GetCustomAttributes(); // 디버깅에서 확인 가능
+
+                Console.WriteLine($"{access} {field.FieldType.Name} {field.Name}");
+            }
+        }
+    }
