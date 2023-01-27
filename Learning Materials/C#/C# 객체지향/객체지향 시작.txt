@@ -1,27 +1,32 @@
-class Knight
-{
-    public int hp;
-    public int attack;
+using System;
 
-    public void Move()
+namespace CSharp
+{
+    class Knight
     {
-        Console.WriteLine("Knight Move");
+        public int hp;
+        public int attack;
+
+        public void Move()
+        {
+            Console.WriteLine("Knight Move");
+        }
+
+        public void Attack()
+        {
+            Console.WriteLine("Knight Attack");
+        }
     }
 
-    public void Attack()
+    class Program
     {
-        Console.WriteLine("Knight Attack");
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Knight knight = new Knight();
-        knight.hp = 100;
-        knight.attack = 10;
-        knight.Move();
-        knight.Attack();
+        static void Main(string[] args)
+        {
+            Knight knight = new Knight();
+            knight.hp = 100;
+            knight.attack = 10;
+            knight.Move();
+            knight.Attack();
+        }
     }
 }

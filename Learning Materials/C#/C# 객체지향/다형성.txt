@@ -1,61 +1,66 @@
-class Player
+using System;
+
+namespace CSharp
 {
-    protected int hp;
-    protected int attack;
-
-    /*public void Move()
+    class Player
     {
-        Console.WriteLine("Plyaer 이동!");
-    }*/
+        protected int hp;
+        protected int attack;
 
-    public virtual void Move()
-    {
-        Console.WriteLine("Plyaer 이동!");
+        /*public void Move()
+        {
+            Console.WriteLine("Plyaer 이동!");
+        }*/
+
+        public virtual void Move()
+        {
+            Console.WriteLine("Plyaer 이동!");
+        }
     }
-}
 
-class Knight : Player
-{
-    /*public new void Move()
+    class Knight : Player
     {
-        Console.WriteLine("Knight 이동!");
-    }*/
+        /*public new void Move()
+        {
+            Console.WriteLine("Knight 이동!");
+        }*/
 
-    public override void Move()
-    {
-        Console.WriteLine("Knight 이동!");
+        public override void Move()
+        {
+            Console.WriteLine("Knight 이동!");
+        }
     }
-}
 
-class Mage : Player
-{
-    public int mp;
-    /*public new void Move()
+    class Mage : Player
     {
-        Console.WriteLine("Mage 이동!");
-    }*/
+        public int mp;
+        /*public new void Move()
+        {
+            Console.WriteLine("Mage 이동!");
+        }*/
 
-    public override void Move()
-    {
-        //base.Move(); // Player 이동!
-        Console.WriteLine("Mage 이동!");
+        public override void Move()
+        {
+            //base.Move(); // Player 이동!
+            Console.WriteLine("Mage 이동!");
+        }
     }
-}
 
-class Program
-{
-    static void Main(string[] args)
+    class Program
     {
-        Knight knight = new Knight();
-        Mage mage = new Mage();
+        static void Main(string[] args)
+        {
+            Knight knight = new Knight();
+            Mage mage = new Mage();
 
-        knight.Move(); // Knight 이동!
-        mage.Move(); // Mage 이동!
+            knight.Move(); // Knight 이동!
+            mage.Move(); // Mage 이동!
 
-        Player knight2 = new Knight();
-        Player mage2 = new Mage();
+            Player knight2 = new Knight();
+            Player mage2 = new Mage();
 
-        knight2.Move(); // Knight 이동!
-        mage2.Move(); // Mage 이동!
+            knight2.Move(); // Knight 이동!
+            mage2.Move(); // Mage 이동!
+        }
     }
 }

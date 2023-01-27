@@ -1,7 +1,10 @@
+using System;
 using System.Reflection; // FieldInfo 사용하기 위함
 using System.Collections.Generic; // IEnumerable<Attribute>로 줄이기 위함
 
-class Program
+namespace CSharp
+{
+    class Program
     {
         class Important : System.Attribute
         {
@@ -12,7 +15,7 @@ class Program
                 this.message = message;
             }
         }
-        
+
         class Monster
         {
             // hp, Very Important // 주석 : 컴파일러가 컴파일도 안함
@@ -68,3 +71,4 @@ class Program
             }
         }
     }
+}

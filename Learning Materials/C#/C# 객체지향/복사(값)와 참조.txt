@@ -1,82 +1,87 @@
-// Ref 참조
-class Knight
+using System;
+
+namespace CSharp
 {
-    public int hp;
-    public int attack;
-
-    public Knight Clone()
+    // Ref 참조
+    class Knight
     {
-        Knight knight = new Knight();
-        knight.hp = hp;
-        knight.attack = attack;
-        return knight;
+        public int hp;
+        public int attack;
+
+        public Knight Clone()
+        {
+            Knight knight = new Knight();
+            knight.hp = hp;
+            knight.attack = attack;
+            return knight;
+        }
+
+        public void Move()
+        {
+            Console.WriteLine("Knight Move");
+        }
+
+        public void Attack()
+        {
+            Console.WriteLine("Knight Attack");
+        }
     }
 
-    public void Move()
+    // 복사
+    struct Mage
     {
-        Console.WriteLine("Knight Move");
+        public int hp;
+        public int attack;
     }
 
-    public void Attack()
+    class Program
     {
-        Console.WriteLine("Knight Attack");
-    }
-}
+        static void KillMage(Mage mage)
+        {
+            mage.hp = 0;
+        }
 
-// 복사
-struct Mage
-{
-    public int hp;
-    public int attack;
-}
+        static void KillKnight(Knight knight)
+        {
+            knight.hp = 0;
+        }
 
-class Program
-{
-    static void KillMage(Mage mage)
-    {
-        mage.hp = 0;
-    }
+        static void Main(string[] args)
+        {
+            Mage mage;
+            mage.hp = 100;
+            mage.attack = 50;
 
-    static void KillKnight(Knight knight)
-    {
-        knight.hp = 0;
-    }
+            // 값 복사, 즉, 다른 객체
+            Mage mage2 = mage;
+            mage2.hp = 0;
 
-    static void Main(string[] args)
-    {
-        Mage mage;
-        mage.hp = 100;
-        mage.attack = 50;
+            Console.WriteLine($"mage HP : {mage.hp}, mage2 HP : {mage2.hp}"); // mage HP : 100, mage2 HP : 0
 
-        // 값 복사, 즉, 다른 객체
-        Mage mage2 = mage;
-        mage2.hp = 0;
+            Knight knight = new Knight();
+            knight.hp = 100;
+            knight.attack = 10;
 
-        Console.WriteLine($"mage HP : {mage.hp}, mage2 HP : {mage2.hp}"); // mage HP : 100, mage2 HP : 0
+            // 같은 개체 참조
+            Knight knight2 = knight;
+            knight.hp = 0;
 
-        Knight knight = new Knight();
-        knight.hp = 100;
-        knight.attack = 10;
+            Console.WriteLine($"knight HP : {knight.hp}, knight2 HP : {knight2.hp}"); // knight HP : 0, knight2 HP : 0
 
-        // 같은 개체 참조
-        Knight knight2 = knight;
-        knight.hp = 0;
+            // class로 생성한 Knight를 값만 복사해서 서로 다른 객체를 만들고 싶다면
+            // 1번 방법
+            Knight knight3 = new Knight();
+            knight3.hp = knight.hp;
+            knight3.attack = knight.attack;
 
-        Console.WriteLine($"knight HP : {knight.hp}, knight2 HP : {knight2.hp}"); // knight HP : 0, knight2 HP : 0
+            // 2번 방법
+            Knight knight4 = knight.Clone();
 
-        // class로 생성한 Knight를 값만 복사해서 서로 다른 객체를 만들고 싶다면
-        // 1번 방법
-        Knight knight3 = new Knight();
-        knight3.hp = knight.hp;
-        knight3.attack = knight.attack;
-
-        // 2번 방법
-        Knight knight4 = knight.Clone();
-
-        /*
-        KillMage(mage);
-        KillKnight(knight);
-        Console.WriteLine($"Mage HP : {mage.hp}, Knight HP : {knight.hp}"); // Mage HP : 100, Knight HP : 0
-        */
+            /*
+            KillMage(mage);
+            KillKnight(knight);
+            Console.WriteLine($"Mage HP : {mage.hp}, Knight HP : {knight.hp}"); // Mage HP : 100, Knight HP : 0
+            */
+        }
     }
 }

@@ -1,48 +1,53 @@
-class Player
-{
-    protected int hp;
-    protected int attack;
-}
+using System;
 
-class Knight : Player
+namespace CSharp
 {
-
-}
-
-class Mage : Player
-{
-    public int mp;
-}
-
-class Program
-{
-    static void EnterGame(Player player)
+    class Player
     {
-        // 방법1.
-        /*bool isMage = (player is Mage);
-        if (isMage)
-        {
-            Mage mage = (Mage)player;
-            mage.mp = 10;
-        }*/
-        //방법2.(추천)
-        Mage mage = (player as Mage);
-        if (mage != null)
-        {
-            mage.mp = 10;
-        }
+        protected int hp;
+        protected int attack;
     }
 
-    static void Main(string[] args)
+    class Knight : Player
     {
-        Knight knight = new Knight();
-        Mage mage = new Mage();
-        Mage mage2 = new Mage();
 
-        Player magePlayer = mage2; // 업캐스팅 // == Player magePlayer = (Player)mage2 // 업캐스팅 할 때는 (Player)생략가능
-        Player magePlayer2 = new Mage(); // 업캐스팅
-        Mage mage3 = (Mage)magePlayer; // 다운캐스팅 // 다운캐스팅을 할 때는 타입을 명시적으로 지정해야함
+    }
 
-        EnterGame(knight); // EnterGame으로 knight가 들어가면서 Player로 업캐스팅 됨
+    class Mage : Player
+    {
+        public int mp;
+    }
+
+    class Program
+    {
+        static void EnterGame(Player player)
+        {
+            // 방법1.
+            /*bool isMage = (player is Mage);
+            if (isMage)
+            {
+                Mage mage = (Mage)player;
+                mage.mp = 10;
+            }*/
+            //방법2.(추천)
+            Mage mage = (player as Mage);
+            if (mage != null)
+            {
+                mage.mp = 10;
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            Knight knight = new Knight();
+            Mage mage = new Mage();
+            Mage mage2 = new Mage();
+
+            Player magePlayer = mage2; // 업캐스팅 // == Player magePlayer = (Player)mage2 // 업캐스팅 할 때는 (Player)생략가능
+            Player magePlayer2 = new Mage(); // 업캐스팅
+            Mage mage3 = (Mage)magePlayer; // 다운캐스팅 // 다운캐스팅을 할 때는 타입을 명시적으로 지정해야함
+
+            EnterGame(knight); // EnterGame으로 knight가 들어가면서 Player로 업캐스팅 됨
+        }
     }
 }

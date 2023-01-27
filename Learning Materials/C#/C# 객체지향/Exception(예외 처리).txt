@@ -1,46 +1,51 @@
-class Program
+using System;
+
+namespace CSharp
 {
-    // 새로 정의한 예외
-    class TestException : Exception // Exception을 상속받아야 함
+    class Program
     {
-
-    }
-
-    static void TestFunc()
-    {
-        throw new TestException();
-    }
-
-    static void Main(string[] args)
-    {
-        try
-        {
-            // 1. 0으로 나눌 때
-            // 2. 잘못된 메모리 참조 (null)
-            // 3. 오버플로우 등
-            int a = 10;
-            int b = 0;
-            int result = a / b; // 에러 발생
-
-            // 에러 발생 이후 코드는 실행 안됨
-            int c = 0;
-
-            throw new TestException(); // 새로 정의한 오류로 던지기
-                                       // TestFunc(); // 이렇게 해도 작동함
-        }
-        // catch문은 하나만 실행됨
-        catch (DivideByZeroException e) // 여기서 0으로 나누면 발생하는 에러를 받음, catch (Exception e)이 이 코드보다 위에 있으면 오류 발생
+        // 새로 정의한 예외
+        class TestException : Exception // Exception을 상속받아야 함
         {
 
         }
-        catch (Exception e) // 모든 에러를 다 받는 상위 형식
-        {
 
-        }
-        finally
+        static void TestFunc()
         {
-            // 오류 발생해도 실행할 코드 작성
-            // DB, 파일 정리 등
+            throw new TestException();
+        }
+
+        static void Main(string[] args)
+        {
+            try
+            {
+                // 1. 0으로 나눌 때
+                // 2. 잘못된 메모리 참조 (null)
+                // 3. 오버플로우 등
+                int a = 10;
+                int b = 0;
+                int result = a / b; // 에러 발생
+
+                // 에러 발생 이후 코드는 실행 안됨
+                int c = 0;
+
+                throw new TestException(); // 새로 정의한 오류로 던지기
+                                           // TestFunc(); // 이렇게 해도 작동함
+            }
+            // catch문은 하나만 실행됨
+            catch (DivideByZeroException e) // 여기서 0으로 나누면 발생하는 에러를 받음, catch (Exception e)이 이 코드보다 위에 있으면 오류 발생
+            {
+
+            }
+            catch (Exception e) // 모든 에러를 다 받는 상위 형식
+            {
+
+            }
+            finally
+            {
+                // 오류 발생해도 실행할 코드 작성
+                // DB, 파일 정리 등
+            }
         }
     }
 }

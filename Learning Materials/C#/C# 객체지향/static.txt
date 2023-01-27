@@ -1,47 +1,52 @@
-class Knight
+using System;
+
+namespace CSharp
 {
-    // 필드
-    // 인스턴스들이 "공유"하는 하나의 값
-    static public int counter = 1;
-
-    // 인스턴스마다 "고유" 값 존재
-    public int hp;
-    public int attack;
-
-    static public void Test()
+    class Knight
     {
-        //this.hp = 100; // static 메소드에서는 static변수 사용, hp는 static변수가 아니라 불가능
-        //this.attack = 10; // static 메소드에서는 static변수 사용, hp는 static변수가 아니라 불가능
-        counter++; // static 변수라 가능
+        // 필드
+        // 인스턴스들이 "공유"하는 하나의 값
+        static public int counter = 1;
+
+        // 인스턴스마다 "고유" 값 존재
+        public int hp;
+        public int attack;
+
+        static public void Test()
+        {
+            //this.hp = 100; // static 메소드에서는 static변수 사용, hp는 static변수가 아니라 불가능
+            //this.attack = 10; // static 메소드에서는 static변수 사용, hp는 static변수가 아니라 불가능
+            counter++; // static 변수라 가능
+        }
+
+        static public Knight CreateKnight()
+        {
+            Knight knight = new Knight();
+            knight.hp = 100; // 새로 인스턴스 생성후 접근하는 방식은 가능
+            knight.attack = 10; // 새로 인스턴스 생성후 접근하는 방식은 가능
+            return knight;
+        }
+
+        public void Move()
+        {
+            Console.WriteLine("Knight Move");
+        }
+
+        static public void Attack()
+        {
+            Console.WriteLine("Knight Attack");
+        }
     }
 
-    static public Knight CreateKnight()
+    class Program
     {
-        Knight knight = new Knight();
-        knight.hp = 100; // 새로 인스턴스 생성후 접근하는 방식은 가능
-        knight.attack = 10; // 새로 인스턴스 생성후 접근하는 방식은 가능
-        return knight;
-    }
-
-    public void Move()
-    {
-        Console.WriteLine("Knight Move");
-    }
-
-    static public void Attack()
-    {
-        Console.WriteLine("Knight Attack");
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Knight knight = Knight.CreateKnight();
-        //Knight.Move(); // 불가능(K 대문자임)
-        knight.Move(); // Knight Move
-        Knight.Attack(); // Knight Attack
-                         //knight.Attack(); // 불가능(k 소문자임)
+        static void Main(string[] args)
+        {
+            Knight knight = Knight.CreateKnight();
+            //Knight.Move(); // 불가능(K 대문자임)
+            knight.Move(); // Knight Move
+            Knight.Attack(); // Knight Attack
+            //knight.Attack(); // 불가능(k 소문자임)
+        }
     }
 }

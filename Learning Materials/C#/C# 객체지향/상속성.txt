@@ -1,36 +1,41 @@
-class Player // 부모 클래스
-{
-    public int hp;
+using System;
 
-    public Player()
+namespace CSharp
+{
+    class Player // 부모 클래스
     {
-        Console.WriteLine("Player 생성자 호출!");
+        public int hp;
+
+        public Player()
+        {
+            Console.WriteLine("Player 생성자 호출!");
+        }
+
+        public Player(int hp)
+        {
+            this.hp = hp;
+            Console.WriteLine("Player hp 생성자 호출!");
+        }
     }
 
-    public Player(int hp)
+    class Knight : Player // 자식 클래스
     {
-        this.hp = hp;
-        Console.WriteLine("Player hp 생성자 호출!");
+        int a;
+
+        public Knight() : base(100) // public Player(int hp), hp에 100값을 던지면서 부모 생성자 호출
+        {
+            this.a = 10; // this로 현재 클래스 내 필드 접근
+            base.hp = 80; // base로 부모 클래스 내 필드 접근, this.hp로도 접근 가능(상속받아서 hp는 자식클래스의 필드로 작동)
+
+            Console.WriteLine("Knight 생성자 호출!");
+        }
     }
-}
 
-class Knight : Player // 자식 클래스
-{
-    int a;
-
-    public Knight() : base(100) // public Player(int hp), hp에 100값을 던지면서 부모 생성자 호출
+    class Program
     {
-        this.a = 10; // this로 현재 클래스 내 필드 접근
-        base.hp = 80; // base로 부모 클래스 내 필드 접근, this.hp로도 접근 가능(상속받아서 hp는 자식클래스의 필드로 작동)
-
-        Console.WriteLine("Knight 생성자 호출!");
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Knight knight = new Knight();
+        static void Main(string[] args)
+        {
+            Knight knight = new Knight();
+        }
     }
 }

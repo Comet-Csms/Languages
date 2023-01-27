@@ -1,26 +1,31 @@
-class Knight
-{
-    protected int hp;
+using System;
 
-    // Getter 또는 Get함수
-    public int GetHp()
-    {
-        // 조건 추가 가능
-        return hp;
-    }
-    // Setter 또는 Set함수
-    public void SetHp(int hp)
-    {
-        // 조건 추가 가능
-        this.hp = hp;
-    }
-}
-
-class Program
+namespace CSharp
 {
-    static void Main(string[] args)
+    class Knight
     {
-        Knight knight = new Knight();
-        knight.SetHp(100);
+        protected int hp;
+
+        // Getter 또는 Get함수
+        public int GetHp()
+        {
+            // 조건 추가 가능
+            return hp;
+        }
+        // Setter 또는 Set함수
+        public void SetHp(int hp)
+        {
+            // 조건 추가 가능
+            this.hp = hp;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Knight knight = new Knight();
+            knight.SetHp(100);
+        }
     }
 }

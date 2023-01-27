@@ -1,0 +1,78 @@
+using System;
+using System.Collections; // IEnumerable 사용하기 위함
+
+namespace CSharp
+{
+    class Test
+    {
+        public int Id = 0;
+    }
+
+    class CoroutineTest : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            yield return 1;
+            yield return 2;
+            yield return 3;
+            yield return 4;
+            //throw new NotImplementedException();
+        }
+    }
+
+    class CoroutineTest2 : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            yield return new Test() { Id = 1 };
+            yield return new Test() { Id = 2 };
+            yield return new Test() { Id = 3 };
+            yield return new Test() { Id = 4 };
+            //throw new NotImplementedException();
+        }
+    }
+
+    class CoroutineTest3 : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            yield return 1;
+            yield return null; // 어떠한 값도 반환하지않고 탈출도 가능
+            yield return 2;
+            yield break; // 영구적인 종료를 의미
+            yield return 3; // 컴파일 오류가 나진 않지만 접근할 수 없음
+            //throw new NotImplementedException();
+        }
+    }
+
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            CoroutineTest test = new CoroutineTest();
+
+            foreach (System.Object t in test) // System.Object 대신 var이나 int도 가능
+            {
+                int value = (int)t; // var이나 int 사용할 때는 이 코드 필요없음
+                Console.WriteLine(value);
+            }
+
+            CoroutineTest2 test2 = new CoroutineTest2();
+
+            foreach (System.Object t in test2) // System.Object 대신 var이나 Test도 가능
+            {
+                Test value = (Test)t; // var이나 Test 사용할 때는 이 코드 필요없음
+                Console.WriteLine(value.Id); // var이나 Test 사용할 때는 t.Id를 해주면 됨
+            }
+
+            CoroutineTest3 test3 = new CoroutineTest3();
+
+            foreach (var t in test3)
+            {
+                Console.WriteLine(t);
+            }
+        }
+    }
+}

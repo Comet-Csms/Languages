@@ -1,40 +1,45 @@
-class Program
+using System;
+
+namespace CSharp
 {
-    abstract class Monster
+    class Program
     {
-        public abstract void Shout(); // 형식만 지정, 메소드를 작성하면 오류.
-    }
-
-    abstract class Flyable
-    {
-        public abstract void Fly();
-    }
-
-    class Orc : Monster
-    {
-        public override void Shout()
+        abstract class Monster
         {
-            Console.WriteLine("오크!");
+            public abstract void Shout(); // 형식만 지정, 메소드를 작성하면 오류.
         }
-    }
 
-    class FlyableOrc : Orc, Flyable // 클래스 다중 상속 불가
-    {
-
-    }
-
-    class Skeleton : Monster
-    {
-        // 아래와 같이 오버라이드를 안하면 class자체에 오류 발생
-        /*public override void Shout()
+        abstract class Flyable
         {
-            Console.WriteLine("스켈레톤!");
-        }*/
-    }
+            public abstract void Fly();
+        }
 
-    static void Main(string[] args)
-    {
-        // 추상화 클래스로 지정하면 그 클래스로는 인스턴스 생성 불가
-        Monster monster = new Monster();
+        class Orc : Monster
+        {
+            public override void Shout()
+            {
+                Console.WriteLine("오크!");
+            }
+        }
+
+        class FlyableOrc : Orc, Flyable // 클래스 다중 상속 불가
+        {
+
+        }
+
+        class Skeleton : Monster
+        {
+            // 아래와 같이 오버라이드를 안하면 class자체에 오류 발생
+            /*public override void Shout()
+            {
+                Console.WriteLine("스켈레톤!");
+            }*/
+        }
+
+        static void Main(string[] args)
+        {
+            // 추상화 클래스로 지정하면 그 클래스로는 인스턴스 생성 불가
+            Monster monster = new Monster();
+        }
     }
 }

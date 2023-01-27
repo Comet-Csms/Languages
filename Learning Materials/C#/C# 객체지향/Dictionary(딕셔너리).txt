@@ -1,35 +1,39 @@
-using System.Collections.Generic; // Dictionary 이용하려면 필요
+using System;
+using System.Collections.Generic; // Dictionary 사용하기 위함
 
-class Monster
+namespace CSharp
 {
-    public int id;
-    public Monster(int id)
+    class Monster
     {
-        this.id = id;
-    }
-}
-class Program
-{
-    static void Main(string[] args)
-    {
-        // Dictionary <- Key : Value
-        // List보다 Dictionary가 값 접근에 빠르다 // Hashtable // 메모리적으로는 손해
-        Dictionary<int, Monster> dic = new Dictionary<int, Monster>();
-
-        //dic.Add(1, new Monster(1)); // Key = 1, Value = new Monster(1)
-        //dic[5] = new Monster(5); // Key = 5, Value = new Monster(5)
-
-        for (int i = 0; i < 10000; i++)
+        public int id;
+        public Monster(int id)
         {
-            dic.Add(i, new Monster(i));
+            this.id = id;
         }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Dictionary <- Key : Value
+            // List보다 Dictionary가 값 접근에 빠르다 // Hashtable // 메모리적으로는 손해
+            Dictionary<int, Monster> dic = new Dictionary<int, Monster>();
 
-        //Monster mon = dic[20000]; // 없는 값 접근시 프로그램 오류
-        //그래서 아래의 방법을 사용
-        Monster mon;
-        bool found = dic.TryGetValue(20000, out mon); // 키에 해당하는 값을 찾으면 mon에 저장후 true반환, 그러지 못하면 false 반환
+            //dic.Add(1, new Monster(1)); // Key = 1, Value = new Monster(1)
+            //dic[5] = new Monster(5); // Key = 5, Value = new Monster(5)
 
-        dic.Remove(6000); // 키 : 6000 삭제
-        dic.Clear();
+            for (int i = 0; i < 10000; i++)
+            {
+                dic.Add(i, new Monster(i));
+            }
+
+            //Monster mon = dic[20000]; // 없는 값 접근시 프로그램 오류
+            //그래서 아래의 방법을 사용
+            Monster mon;
+            bool found = dic.TryGetValue(20000, out mon); // 키에 해당하는 값을 찾으면 mon에 저장후 true반환, 그러지 못하면 false 반환
+
+            dic.Remove(6000); // 키 : 6000 삭제
+            dic.Clear();
+        }
     }
 }

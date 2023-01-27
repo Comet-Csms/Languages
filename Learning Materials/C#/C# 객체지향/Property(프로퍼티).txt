@@ -1,48 +1,53 @@
-class Knight
+using System;
+
+namespace CSharp
 {
-    protected int hp;
-
-    public int Hp
+    class Knight
     {
-        get
+        protected int hp;
+
+        public int Hp
         {
-            return hp;
+            get
+            {
+                return hp;
+            }
+            set // 클래스 내부에서만 사용하고 싶다면 private set이나 protected set을 이용
+            {
+                hp = value;
+            }
         }
-        set // 클래스 내부에서만 사용하고 싶다면 private set이나 protected set을 이용
+
+        // 이와 같이 선언하면
+        public int Attack
         {
-            hp = value;
+            get;
+            set;
         }
+
+        // 아래 코드를 완성하는 것과 비슷하다.
+        /*private int _attack;
+        public int GetAttack()
+        {
+            return _attack;
+        }
+        public void SetAttack(int value)
+        {
+            _attack = value;
+        }*/
+
+        public int Mp { get; set; } = 100; // _mp를 100으로 초기화
+
     }
 
-    // 이와 같이 선언하면
-    public int Attack
+    class Program
     {
-        get;
-        set;
-    }
+        static void Main(string[] args)
+        {
+            Knight knight = new Knight();
+            knight.Hp = 100;
 
-    // 아래 코드를 완성하는 것과 비슷하다.
-    /*private int _attack;
-    public int GetAttack()
-    {
-        return _attack;
-    }
-    public void SetAttack(int value)
-    {
-        _attack = value;
-    }*/
-
-    public int Mp { get; set; } = 100; // _mp를 100으로 초기화
-
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Knight knight = new Knight();
-        knight.Hp = 100;
-
-        int hp = knight.Hp;
+            int hp = knight.Hp;
+        }
     }
 }

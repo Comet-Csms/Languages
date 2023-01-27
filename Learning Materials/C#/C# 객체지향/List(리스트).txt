@@ -1,33 +1,37 @@
-using System.Collections.Generic; // List 이용하려면 필요
+using System;
+using System.Collections.Generic; // List 사용하기 위함
 
-class Program
+namespace CSharp
 {
-    static void Main(string[] args)
+    class Program
     {
-        // List <- 동적 배열
-        List<int> list = new List<int>();
-
-        for (int i = 0; i < 5; i++)
+        static void Main(string[] args)
         {
-            list.Add(i);
-        }
+            // List <- 동적 배열
+            List<int> list = new List<int>();
 
-        // 삽입 삭제 전체삭제
-        list.Insert(2, 999);
-        bool success = list.Remove(999); // 999라는 숫자를 삭제하고, 삭제했으면 true를 반환, 삭제하지 못했으면 false를 반환, 여러개의 999가 있으면 가장 앞쪽의 999하나를 삭제하고 종료
-        list.Insert(2, 999);
-        list.RemoveAt(2); // 2번 인덱스 값 삭제;
-        list.Clear();
-        // 삽입과 삭제는 값들을 복사해서 옮기는 것이라 효율적이지는 않음
+            for (int i = 0; i < 5; i++)
+            {
+                list.Add(i);
+            }
 
-        for (int i = 0; i < list.Count; i++)
-        {
-            Console.WriteLine(list[i]);
-        }
+            // 삽입 삭제 전체삭제
+            list.Insert(2, 999);
+            bool success = list.Remove(999); // 999라는 숫자를 삭제하고, 삭제했으면 true를 반환, 삭제하지 못했으면 false를 반환, 여러개의 999가 있으면 가장 앞쪽의 999하나를 삭제하고 종료
+            list.Insert(2, 999);
+            list.RemoveAt(2); // 2번 인덱스 값 삭제;
+            list.Clear();
+            // 삽입과 삭제는 값들을 복사해서 옮기는 것이라 효율적이지는 않음
 
-        foreach (int num in list)
-        {
-            Console.WriteLine(num);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine(list[i]);
+            }
+
+            foreach (int num in list)
+            {
+                Console.WriteLine(num);
+            }
         }
     }
 }
